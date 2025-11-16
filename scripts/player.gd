@@ -75,6 +75,7 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 		jump_buffer_timer = 0
 		coyote_timer = 0
+		SFX.play_jump()  # Play jump sound
 	
 	# Handle attack
 	if Input.is_action_just_pressed("ui_select") and not is_attacking:
@@ -93,6 +94,7 @@ func _physics_process(delta):
 
 func perform_attack():
 	is_attacking = true
+	SFX.play_attack()  # Play attack sound
 	
 	# Show attack indicator briefly
 	if attack_area.has_node("AttackIndicator"):
@@ -129,6 +131,7 @@ func take_damage(amount: int):
 	current_health -= amount
 	current_health = max(0, current_health)
 	health_changed.emit(current_health)
+	SFX.play_damage()  # Play damage sound
 	
 	if current_health <= 0:
 		die()
@@ -150,6 +153,7 @@ func heal(amount: int):
 	current_health += amount
 	current_health = min(current_health, max_health)
 	health_changed.emit(current_health)
+	SFX.play_heal()  # Play heal sound
 	
 	# Visual feedback for healing
 	var heal_tween = create_tween()
@@ -158,5 +162,6 @@ func heal(amount: int):
 
 func die():
 	player_died.emit()
-	# Optionally respawn or show game over
-	get_tree().reload_current_scene()
+	SFX.play_game_over()  # Play game over sound
+	# Don't reload here - let the game manager handle it
+	# to avoid physics callback issues

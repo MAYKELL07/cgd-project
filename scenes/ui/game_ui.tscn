@@ -7,11 +7,9 @@ font_size = 14
 font_color = Color(1, 1, 1, 0.7)
 
 [sub_resource type="LabelSettings" id="LabelSettings_score"]
-font_size = 16
 font_color = Color(1, 0.9, 0.3, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_timer"]
-font_size = 16
 font_color = Color(0.5, 0.8, 1, 1)
 
 [node name="GameUI" type="CanvasLayer"]
@@ -46,7 +44,6 @@ label_settings = SubResource("LabelSettings_health")
 [node name="HealthBar" type="ProgressBar" parent="TopBar/VBoxContainer/HBoxContainer/HealthContainer"]
 custom_minimum_size = Vector2(250, 35)
 layout_mode = 2
-max_value = 100.0
 value = 100.0
 show_percentage = false
 
@@ -72,7 +69,7 @@ layout_mode = 2
 
 [node name="ScoreLabel" type="Label" parent="TopBar/VBoxContainer/HBoxContainer/StatsContainer"]
 layout_mode = 2
-text = "SCORE: 0"
+text = "BUGS: 0"
 label_settings = SubResource("LabelSettings_score")
 
 [node name="TimerLabel" type="Label" parent="TopBar/VBoxContainer/HBoxContainer/StatsContainer"]
@@ -86,13 +83,13 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -200.0
+offset_left = -250.0
 offset_top = -60.0
-offset_right = 200.0
+offset_right = 250.0
 offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "[WASD/Arrows] Move  [Space] Jump  [E/Click] Attack"
+text = "[WASD] Move | [Space] Jump | [E] Delete Bug | [ESC] Pause"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -125,7 +122,7 @@ theme_override_constants/separation = 20
 
 [node name="TitleLabel" type="Label" parent="CompletionScreen/Panel/VBoxContainer"]
 layout_mode = 2
-text = "LEVEL COMPLETE!"
+text = "✓ WINDOW CLOSED SUCCESSFULLY!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -135,22 +132,22 @@ theme_override_constants/separation = 10
 
 [node name="TimeLabel" type="Label" parent="CompletionScreen/Panel/VBoxContainer/StatsContainer"]
 layout_mode = 2
-text = "Time: 00:00"
+text = "Cleanup Time: 00:00"
 horizontal_alignment = 1
 
 [node name="ScoreLabel" type="Label" parent="CompletionScreen/Panel/VBoxContainer/StatsContainer"]
 layout_mode = 2
-text = "Score: 0"
+text = "Bugs Eliminated: 0"
 horizontal_alignment = 1
 
 [node name="HealthLabel" type="Label" parent="CompletionScreen/Panel/VBoxContainer/StatsContainer"]
 layout_mode = 2
-text = "Health Remaining: 100"
+text = "System Health: 100%"
 horizontal_alignment = 1
 
 [node name="ContinueLabel" type="Label" parent="CompletionScreen/Panel/VBoxContainer"]
 layout_mode = 2
-text = "Press [SPACE] to continue"
+text = "Press [SPACE] to next file"
 horizontal_alignment = 1
 
 [node name="GameOverScreen" type="ColorRect" parent="."]
@@ -182,16 +179,16 @@ theme_override_constants/separation = 30
 
 [node name="TitleLabel" type="Label" parent="GameOverScreen/Panel/VBoxContainer"]
 layout_mode = 2
-text = "GAME OVER"
+text = "⚠ SYSTEM FAILURE ⚠"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="FinalScore" type="Label" parent="GameOverScreen/Panel/VBoxContainer"]
 layout_mode = 2
-text = "Final Score: 0"
+text = "Bugs Eliminated: 0"
 horizontal_alignment = 1
 
 [node name="RestartLabel" type="Label" parent="GameOverScreen/Panel/VBoxContainer"]
 layout_mode = 2
-text = "Press [SPACE] to restart"
+text = "Press [SPACE] to restore system"
 horizontal_alignment = 1

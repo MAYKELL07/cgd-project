@@ -68,4 +68,5 @@ func _on_hitbox_body_entered(body):
 
 func die():
 	enemy_killed.emit(score_value)
-	queue_free()
+	SFX.play_enemy_death()  # Play enemy death sound
+	call_deferred("queue_free")

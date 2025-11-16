@@ -11,9 +11,16 @@ config_version=5
 [application]
 
 config/name="CGD-Project"
-run/main_scene="res://scenes/levels/level_1.tscn"
+run/main_scene="res://scenes/ui/main_menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+AudioManager="*res://scripts/audio_manager.gd"
+GameData="*res://scripts/game_data.gd"
+SceneTransition="*res://scenes/ui/scene_transition.tscn"
+SFX="*res://scripts/sfx_manager.gd"
 
 [input]
 

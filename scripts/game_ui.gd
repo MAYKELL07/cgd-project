@@ -20,6 +20,7 @@ var elapsed_time = 0.0
 var is_timer_running = true
 var level_completed = false
 var game_over = false
+var current_level_number = 1  # Will be set by game manager
 
 func _ready():
 	update_health(current_health)
@@ -87,6 +88,10 @@ func stop_timer():
 func show_completion_screen():
 	level_completed = true
 	is_timer_running = false
+	SFX.play_complete()  # Play completion sound
+	
+	# Save progress to GameData
+	GameData.complete_level(current_level_number, score, elapsed_time)
 	
 	if completion_screen:
 		# Update completion stats
@@ -103,13 +108,14 @@ func show_completion_screen():
 		tween.tween_property(completion_screen, "modulate:a", 1.0, 0.5)
 
 func continue_to_next_level():
-	# Load next level or show victory screen
-	var next_level = "res://scenes/levels/level_2.tscn"
+	# Load next level or return to menu
+	var next_level_num = current_level_number + 1
+	var next_level = "res://scenes/levels/level_%d.tscn" % next_level_num
 	if ResourceLoader.exists(next_level):
-		get_tree().change_scene_to_file(next_level)
+		SceneTransition.transition_to_scene(next_level)
 	else:
-		# No next level, could show victory screen
-		get_tree().reload_current_scene()
+		# No next level, return to level select
+		SceneTransition.transition_to_scene("res://scenes/ui/level_select.tscn")
 
 func show_game_over():
 	game_over = true

@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://chqg2xm8bwwxh"]
+[gd_scene load_steps=4 format=3 uid="uid://chqg2xm8bwwxh"]
 
 [ext_resource type="Script" path="res://scripts/moving_platform.gd" id="1_b8k7p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(150, 30)
+
+[sub_resource type="LabelSettings" id="LabelSettings_arrow"]
+font_size = 20
+font_color = Color(1, 1, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [node name="MovingPlatform" type="AnimatableBody2D"]
 script = ExtResource("1_b8k7p")
@@ -14,6 +20,16 @@ offset_top = -15.0
 offset_right = 75.0
 offset_bottom = 15.0
 color = Color(0.6, 0.4, 0.2, 1)
+
+[node name="ArrowIndicator" type="Label" parent="."]
+offset_left = -50.0
+offset_top = -12.0
+offset_right = 50.0
+offset_bottom = 13.0
+text = "→ → →"
+label_settings = SubResource("LabelSettings_arrow")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_1")

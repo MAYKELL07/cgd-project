@@ -31,21 +31,26 @@ theme_override_constants/separation = 20
 
 [node name="PauseLabel" type="Label" parent="PausePanel/VBoxContainer"]
 layout_mode = 2
-text = "PAUSED"
+text = "⏸ SYSTEM PAUSED ⏸"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ResumeButton" type="Button" parent="PausePanel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-text = "Resume"
+text = "▶ Resume Cleanup"
 
 [node name="RestartButton" type="Button" parent="PausePanel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-text = "Restart Level"
+text = "↻ Restart Process"
+
+[node name="MenuButton" type="Button" parent="PausePanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "⌂ Return to Desktop"
 
 [node name="QuitButton" type="Button" parent="PausePanel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-text = "Quit Game"
+text = "⏻ Shutdown System"
