@@ -75,17 +75,17 @@ cgd-project/
 │       ├── exit_button.tscn
 │       └── level_1.tscn
 └── scripts/
-    ├── player.gd
-    ├── enemy.gd
-    ├── moving_platform.gd
-    ├── fire_wall.gd
-    ├── fire_shooter.gd
-    ├── fireball.gd
-    ├── spikes.gd
-    ├── health_pickup.gd
-    ├── game_ui.gd
-    ├── exit_button.gd
-    └── game_manager.gd
+	├── player.gd
+	├── enemy.gd
+	├── moving_platform.gd
+	├── fire_wall.gd
+	├── fire_shooter.gd
+	├── fireball.gd
+	├── spikes.gd
+	├── health_pickup.gd
+	├── game_ui.gd
+	├── exit_button.gd
+	└── game_manager.gd
 ```
 
 ## How to Customize
