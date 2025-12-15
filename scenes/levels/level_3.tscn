@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d6n0o3p9r5sxy"]
+[gd_scene load_steps=14 format=3 uid="uid://5g6kdpikd8vi"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_k6r7s"]
 [ext_resource type="PackedScene" uid="uid://bj6yx3h5q8sof" path="res://scenes/player/player.tscn" id="2_l7s8t"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c3q5w8h2n7pxr" path="res://scenes/collectibles/health_pickup.tscn" id="9_s4z5a"]
 [ext_resource type="PackedScene" uid="uid://dar3x7k2m8qpn" path="res://scenes/levels/exit_button.tscn" id="10_t5a6b"]
 [ext_resource type="PackedScene" uid="uid://cx8p4q2n5rwxy" path="res://scenes/ui/pause_menu.tscn" id="11_pause"]
+[ext_resource type="Texture2D" uid="uid://bdvh0jnvw8lyk" path="res://scenes/levels/wp4769142.png" id="12_5tlka"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(1998, 34)
@@ -19,14 +20,25 @@ size = Vector2(1998, 34)
 script = ExtResource("1_k6r7s")
 level_number = 3
 
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -100
+offset_left = -974.0
+offset_top = -754.0
+offset_right = 7093.0
+offset_bottom = 4287.0
+scale = Vector2(0.44, 0.44)
+texture = ExtResource("12_5tlka")
+
 [node name="Player" parent="." instance=ExtResource("2_l7s8t")]
-position = Vector2(100, 500)
+position = Vector2(86, 629)
 
 [node name="GameUI" parent="." instance=ExtResource("3_m8t9u")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("11_pause")]
+visible = false
 
 [node name="Floor" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(600, 680)
 
 [node name="ColorRect" type="ColorRect" parent="Floor"]
@@ -40,6 +52,7 @@ color = Color(0.3, 0.2, 0.3, 1)
 shape = SubResource("RectangleShape2D_1")
 
 [node name="LeftWall" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(0, 360)
 
 [node name="ColorRect" type="ColorRect" parent="LeftWall"]
@@ -54,6 +67,7 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_1")
 
 [node name="Ceiling" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(600, 0)
 
 [node name="ColorRect" type="ColorRect" parent="Ceiling"]
@@ -67,6 +81,7 @@ position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_1")
 
 [node name="RightWall" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(1200, 360)
 
 [node name="ColorRect" type="ColorRect" parent="RightWall"]
@@ -89,6 +104,7 @@ offset_top = -10.0
 offset_right = 50.0
 offset_bottom = 10.0
 color = Color(0.4, 0.3, 0.45, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform1"]
 scale = Vector2(0.05, 1)
@@ -103,6 +119,7 @@ offset_top = -10.0
 offset_right = 40.0
 offset_bottom = 10.0
 color = Color(0.4, 0.3, 0.45, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2"]
 scale = Vector2(0.04, 1)
@@ -117,6 +134,7 @@ offset_top = -10.0
 offset_right = 40.0
 offset_bottom = 10.0
 color = Color(0.4, 0.3, 0.45, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform3"]
 scale = Vector2(0.04, 1)
@@ -131,6 +149,7 @@ offset_top = -10.0
 offset_right = 60.0
 offset_bottom = 10.0
 color = Color(0.4, 0.3, 0.45, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform4"]
 scale = Vector2(0.06, 1)
@@ -144,8 +163,8 @@ move_speed = 150.0
 [node name="MovingPlatform2" parent="." instance=ExtResource("4_n9u0v")]
 position = Vector2(600, 300)
 move_distance = 160.0
-direction = Vector2(0, 1)
 move_speed = 130.0
+direction = Vector2(0, 1)
 
 [node name="MovingPlatform3" parent="." instance=ExtResource("4_n9u0v")]
 position = Vector2(850, 200)
@@ -156,7 +175,6 @@ move_speed = 160.0
 position = Vector2(450, 150)
 move_distance = 100.0
 direction = Vector2(0, 1)
-move_speed = 100.0
 
 [node name="MovingPlatform5" parent="." instance=ExtResource("4_n9u0v")]
 position = Vector2(950, 550)
@@ -187,7 +205,6 @@ enemy_type = "flying"
 
 [node name="Enemy6" parent="." instance=ExtResource("5_o0v1w")]
 position = Vector2(950, 150)
-move_distance = 150.0
 enemy_type = "flying"
 
 [node name="FireWall1" parent="." instance=ExtResource("6_p1w2x")]
@@ -230,5 +247,5 @@ position = Vector2(850, 150)
 position = Vector2(1050, 300)
 
 [node name="ExitButton" parent="." instance=ExtResource("10_t5a6b")]
-position = Vector2(1100, 100)
+position = Vector2(1035, 146)
 next_level_path = "res://scenes/ui/main_menu.tscn"

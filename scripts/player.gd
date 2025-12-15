@@ -17,10 +17,15 @@ var coyote_timer = 0.0
 var jump_buffer_timer = 0.0
 var was_on_floor = false
 
+@onready var animated_sprite = $AnimatedSprite2D
+
 signal health_changed(new_health)
 signal player_died
 
 func _ready():
+	# Add player to group so enemies can find it
+	add_to_group("player")
+	
 	health_changed.emit(current_health)
 	setup_attack_area()
 
@@ -85,12 +90,26 @@ func _physics_process(delta):
 	var direction = Input.get_axis("ui_left", "ui_right")
 	if direction:
 		velocity.x = direction * SPEED
-		# Flip sprite based on direction (visual feedback)
-		scale.x = sign(direction) if direction != 0 else scale.x
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+	
+	# Handle animations based on state
+	if animated_sprite:
+		if not is_on_floor():
+			# In air - play jump animation
+			animated_sprite.play("jump")
+		elif direction != 0:
+			# Moving on ground - play walk animation
+			animated_sprite.play("walk")
+			animated_sprite.flip_h = direction < 0  # Flip horizontally if moving left
+		else:
+			# Standing still - play idle or default animation
+			if abs(velocity.x) > 10:
+				animated_sprite.play("idle")
+			else:
+				animated_sprite.play("default")
 
 func perform_attack():
 	is_attacking = true

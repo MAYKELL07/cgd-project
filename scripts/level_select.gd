@@ -13,6 +13,23 @@ const LEVEL_NAMES = [
 func _ready():
 	back_button.pressed.connect(_on_back_pressed)
 	_populate_levels()
+	
+	# Add hover effect to back button
+	_setup_button_hover(back_button)
+
+func _setup_button_hover(button: Button):
+	button.mouse_entered.connect(func(): 
+		SFX.play_button_hover()
+		var tween = create_tween()
+		tween.tween_property(button, "scale", Vector2(1.05, 1.05), 0.1)
+	)
+	button.mouse_exited.connect(func(): 
+		var tween = create_tween()
+		tween.tween_property(button, "scale", Vector2(1.0, 1.0), 0.1)
+	)
+	button.pressed.connect(func(): 
+		SFX.play_button_click()
+	)
 
 func _populate_levels():
 	# Clear existing children
@@ -42,6 +59,9 @@ func create_level_button(level_num: int) -> Button:
 			button.text += "\n[INFECTED]"
 		
 		button.pressed.connect(func(): _on_level_selected(level_num))
+		
+		# Add hover effect to level buttons
+		_setup_button_hover(button)
 	else:
 		button.text = "🔒\nLOCKED\n\n%s" % level_name
 		button.disabled = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b0rk018xh5eyx"]
+[gd_scene load_steps=14 format=3 uid="uid://b0rk018xh5eyx"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_k6r7s"]
 [ext_resource type="PackedScene" uid="uid://bj6yx3h5q8sof" path="res://scenes/player/player.tscn" id="2_l7s8t"]
@@ -11,12 +11,22 @@
 [ext_resource type="PackedScene" uid="uid://c3q5w8h2n7pxr" path="res://scenes/collectibles/health_pickup.tscn" id="9_s4z5a"]
 [ext_resource type="PackedScene" uid="uid://dar3x7k2m8qpn" path="res://scenes/levels/exit_button.tscn" id="10_t5a6b"]
 [ext_resource type="PackedScene" uid="uid://cx8p4q2n5rwxy" path="res://scenes/ui/pause_menu.tscn" id="11_pause"]
+[ext_resource type="Texture2D" uid="uid://bdvh0jnvw8lyk" path="res://scenes/levels/wp4769142.png" id="12_2cs0s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
 size = Vector2(1998, 34)
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_k6r7s")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -100
+offset_left = -1268.0
+offset_top = -862.0
+offset_right = 7649.0
+offset_bottom = 4711.0
+scale = Vector2(0.44, 0.44)
+texture = ExtResource("12_2cs0s")
 
 [node name="Player" parent="." instance=ExtResource("2_l7s8t")]
 position = Vector2(100, 500)
@@ -26,6 +36,7 @@ position = Vector2(100, 500)
 [node name="PauseMenu" parent="." instance=ExtResource("11_pause")]
 
 [node name="Floor" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(600, 680)
 
 [node name="ColorRect" type="ColorRect" parent="Floor"]
@@ -39,6 +50,7 @@ color = Color(0.4, 0.4, 0.4, 1)
 shape = SubResource("RectangleShape2D_1")
 
 [node name="LeftWall" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(0, 360)
 
 [node name="ColorRect" type="ColorRect" parent="LeftWall"]
@@ -46,6 +58,7 @@ offset_top = -360.0
 offset_right = 20.0
 offset_bottom = 360.0
 color = Color(0.3, 0.3, 0.3, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
 position = Vector2(10, 0)
@@ -53,6 +66,7 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_1")
 
 [node name="Ceiling" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(600, 0)
 
 [node name="ColorRect" type="ColorRect" parent="Ceiling"]
@@ -60,12 +74,14 @@ offset_left = -1000.0
 offset_right = 1000.0
 offset_bottom = 20.0
 color = Color(0.3, 0.3, 0.3, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
 position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_1")
 
 [node name="RightWall" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(1200, 360)
 
 [node name="ColorRect" type="ColorRect" parent="RightWall"]
@@ -73,6 +89,7 @@ offset_left = -20.0
 offset_top = -360.0
 offset_bottom = 360.0
 color = Color(0.3, 0.3, 0.3, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
 position = Vector2(-10, 0)
@@ -88,6 +105,7 @@ offset_top = -10.0
 offset_right = 75.0
 offset_bottom = 10.0
 color = Color(0.5, 0.5, 0.5, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform1"]
 scale = Vector2(0.08, 1)
@@ -135,5 +153,4 @@ position = Vector2(450, 400)
 
 [node name="ExitButton" parent="." instance=ExtResource("10_t5a6b")]
 position = Vector2(904, 222)
-next_level_path = "res://scenes/levels/level_2.tscn"
 scale = Vector2(0.75, 1)

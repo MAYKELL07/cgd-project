@@ -10,9 +10,36 @@ collision_layer = 4
 collision_mask = 1
 script = ExtResource("1_i4p5y")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PackedVector2Array(-30, 0, -20, -15, -10, 0, 0, -15, 10, 0, 20, -15, 30, 0)
-color = Color(0.5, 0.5, 0.5, 1)
+[node name="Base" type="ColorRect" parent="."]
+offset_left = -30.0
+offset_top = -2.0
+offset_right = 30.0
+offset_bottom = 2.0
+color = Color(0.3, 0.3, 0.3, 1)
+
+[node name="Spike1Base" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-30, 0, -20, -12, -10, 0)
+color = Color(0.4, 0.4, 0.4, 1)
+
+[node name="Spike1Tip" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-25, -6, -20, -15, -15, -6)
+color = Color(0.6, 0.6, 0.6, 1)
+
+[node name="Spike2Base" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-10, 0, 0, -12, 10, 0)
+color = Color(0.4, 0.4, 0.4, 1)
+
+[node name="Spike2Tip" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-5, -6, 0, -15, 5, -6)
+color = Color(0.6, 0.6, 0.6, 1)
+
+[node name="Spike3Base" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(10, 0, 20, -12, 30, 0)
+color = Color(0.4, 0.4, 0.4, 1)
+
+[node name="Spike3Tip" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(15, -6, 20, -15, 25, -6)
+color = Color(0.6, 0.6, 0.6, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)

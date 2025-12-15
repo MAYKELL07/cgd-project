@@ -15,7 +15,7 @@ func _ready():
 		return
 	
 	# Play level music
-	AudioManager.play_music(preload("res://Audio/658340__josefpres__8-bit-game-loop-012-simple-mix-4-short-120-bpm.wav"))
+	AudioManager.play_music(preload("res://Audio/Music/level_music.wav"))
 	
 	# Connect player signals to UI
 	if player.health_changed.connect(_on_player_health_changed) != OK:

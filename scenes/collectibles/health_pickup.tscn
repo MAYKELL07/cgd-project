@@ -1,23 +1,106 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3q5w8h2n7pxr"]
+[gd_scene load_steps=7 format=3 uid="uid://c3q5w8h2n7pxr"]
 
 [ext_resource type="Script" path="res://scripts/health_pickup.gd" id="1_g2n3w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1"]
 radius = 15.0
 
+[sub_resource type="Curve" id="Curve_health"]
+_data = [Vector2(0, 0.3), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_health"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0, 1, 0.3, 1, 0.5, 1, 0.7, 0.8, 1, 1, 1, 0.4)
+
+[sub_resource type="Curve" id="Curve_collect"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_collect"]
+offsets = PackedFloat32Array(0, 0.4, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.5, 1, 0.7, 0.8, 0, 1, 0.3, 0.3)
+
 [node name="HealthPickup" type="Area2D"]
 collision_layer = 8
-collision_mask = 1
 script = ExtResource("1_g2n3w")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -15.0
-offset_top = -15.0
-offset_right = 15.0
-offset_bottom = 15.0
+[node name="OuterGlow" type="ColorRect" parent="."]
+modulate = Color(0, 1, 0.3, 0.3)
+offset_left = 0.284266
+offset_top = -29.0
+offset_right = 40.2843
+offset_bottom = 11.0
+rotation = 0.785398
 color = Color(0, 1, 0.3, 1)
+
+[node name="MainBody" type="ColorRect" parent="."]
+offset_top = -21.0
+offset_right = 30.0
+offset_bottom = 9.0
+rotation = 0.785398
+color = Color(0, 1, 0.3, 1)
+
+[node name="InnerHighlight" type="ColorRect" parent="."]
+offset_left = 0.999999
+offset_top = -14.0
+offset_right = 21.0
+offset_bottom = 6.0
+rotation = 0.785398
+color = Color(0.5, 1, 0.7, 1)
+
+[node name="Cross1" type="ColorRect" parent="."]
+offset_left = -2.0
+offset_top = -10.0
+offset_right = 2.0
+offset_bottom = 10.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Cross2" type="ColorRect" parent="."]
+offset_left = -10.0
+offset_top = -2.0
+offset_right = 10.0
+offset_bottom = 2.0
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1")
+
+[node name="GlowParticles" type="CPUParticles2D" parent="."]
+lifetime = 1.5
+preprocess = 0.8
+explosiveness = 0.1
+randomness = 0.3
+lifetime_randomness = 0.3
+direction = Vector2(0, -1)
+spread = 40.0
+gravity = Vector2(0, -20)
+initial_velocity_min = 10.0
+initial_velocity_max = 25.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_health")
+color_ramp = SubResource("Gradient_health")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "bob"
+
+[node name="CollectionParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 25
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.8
+randomness = 0.3
+lifetime_randomness = 0.2
+direction = Vector2(0, -1)
+spread = 180.0
+gravity = Vector2(0, 200)
+initial_velocity_min = 80.0
+initial_velocity_max = 150.0
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+scale_amount_curve = SubResource("Curve_collect")
+color_ramp = SubResource("Gradient_collect")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -16,6 +16,13 @@ func _ready():
 	settings_button.pressed.connect(_on_settings_pressed)
 	quit_button.pressed.connect(_on_quit_pressed)
 	
+	# Add hover effects to all buttons
+	_setup_button_hover(play_button)
+	_setup_button_hover(story_button)
+	_setup_button_hover(levels_button)
+	_setup_button_hover(settings_button)
+	_setup_button_hover(quit_button)
+	
 	# Animate title
 	_animate_title()
 	
@@ -24,7 +31,18 @@ func _ready():
 		_animate_background()
 	
 	# Play menu music
-	AudioManager.play_music(preload("res://Audio/803169__flavioconcini__arcade.mp3"))
+	AudioManager.play_music(preload("res://Audio/Music/menu_music.mp3"))
+
+func _setup_button_hover(button: Button):
+	button.mouse_entered.connect(func(): 
+		var tween = create_tween()
+		tween.tween_property(button, "scale", Vector2(1.05, 1.05), 0.1)
+	)
+	button.mouse_exited.connect(func(): 
+		var tween = create_tween()
+		tween.tween_property(button, "scale", Vector2(1.0, 1.0), 0.1)
+	)
+
 
 func _animate_background():
 	# Pulse the grid pattern

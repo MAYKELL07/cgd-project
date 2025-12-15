@@ -1,67 +1,56 @@
 extends Node
 
-# Placeholder SFX - will be replaced with actual audio files
-# For now, using synthesized beeps/tones
-
-func create_beep(frequency: float, duration: float) -> AudioStream:
-	# This is a placeholder - in real game, load actual audio files
-	# For now, return null and we'll add real sounds later
-	return null
-
-# SFX references - replace these with actual audio file paths
-var sfx_jump: AudioStream = null
-var sfx_land: AudioStream = null
-var sfx_attack: AudioStream = null
-var sfx_hit: AudioStream = null
-var sfx_damage: AudioStream = null
-var sfx_heal: AudioStream = null
-var sfx_enemy_death: AudioStream = null
-var sfx_collect: AudioStream = null
-var sfx_complete: AudioStream = null
-var sfx_game_over: AudioStream = null
-
-func _ready():
-	# Load SFX when available
-	# For now, these remain null and no sound plays
-	pass
+# SFX references - organized and cleaned audio files
+var sfx_jump: AudioStream = preload("res://Audio/SFX/jump.mp3")
+var sfx_land: AudioStream = preload("res://Audio/SFX/land.wav")
+var sfx_attack: AudioStream = preload("res://Audio/SFX/attack.wav")
+var sfx_damage: AudioStream = preload("res://Audio/SFX/damage.wav")
+var sfx_heal: AudioStream = preload("res://Audio/SFX/heal.wav")
+var sfx_enemy_death: AudioStream = preload("res://Audio/SFX/enemy_death.mp3")
+var sfx_collect: AudioStream = preload("res://Audio/SFX/collect.wav")
+var sfx_complete: AudioStream = preload("res://Audio/SFX/level_complete.wav")
+var sfx_game_over: AudioStream = preload("res://Audio/SFX/game_over.mp3")
+var sfx_button_click: AudioStream = preload("res://Audio/SFX/button_click.mp3")
+var sfx_button_hover: AudioStream = preload("res://Audio/SFX/jump.mp3")  # Using jump sound for hover
+var sfx_menu_open: AudioStream = preload("res://Audio/SFX/menu_open.wav")
+var sfx_powerup: AudioStream = preload("res://Audio/SFX/collect.wav")
 
 # Helper functions to play sounds through AudioManager
 func play_jump():
-	if sfx_jump:
-		AudioManager.play_sfx(sfx_jump)
+	AudioManager.play_sfx(sfx_jump)
 
 func play_land():
-	if sfx_land:
-		AudioManager.play_sfx(sfx_land)
+	AudioManager.play_sfx(sfx_land)
 
 func play_attack():
-	if sfx_attack:
-		AudioManager.play_sfx(sfx_attack)
-
-func play_hit():
-	if sfx_hit:
-		AudioManager.play_sfx(sfx_hit)
+	AudioManager.play_sfx(sfx_attack)
 
 func play_damage():
-	if sfx_damage:
-		AudioManager.play_sfx(sfx_damage)
+	AudioManager.play_sfx(sfx_damage)
 
 func play_heal():
-	if sfx_heal:
-		AudioManager.play_sfx(sfx_heal)
+	AudioManager.play_sfx(sfx_heal)
 
 func play_enemy_death():
-	if sfx_enemy_death:
-		AudioManager.play_sfx(sfx_enemy_death)
+	AudioManager.play_sfx(sfx_enemy_death)
 
 func play_collect():
-	if sfx_collect:
-		AudioManager.play_sfx(sfx_collect)
+	AudioManager.play_sfx(sfx_collect)
 
 func play_complete():
-	if sfx_complete:
-		AudioManager.play_sfx(sfx_complete)
+	AudioManager.play_sfx(sfx_complete)
 
 func play_game_over():
-	if sfx_game_over:
-		AudioManager.play_sfx(sfx_game_over)
+	AudioManager.play_sfx(sfx_game_over)
+
+func play_button_click():
+	AudioManager.play_sfx(sfx_button_click)
+
+func play_button_hover():
+	AudioManager.play_sfx(sfx_button_hover)
+
+func play_menu_open():
+	AudioManager.play_sfx(sfx_menu_open)
+
+func play_powerup():
+	AudioManager.play_sfx(sfx_powerup)
