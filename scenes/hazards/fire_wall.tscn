@@ -1,25 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1wqx3h8r5mno"]
+[gd_scene load_steps=4 format=3 uid="uid://d1wqx3h8r5mno"]
 
 [ext_resource type="Script" path="res://scripts/fire_wall.gd" id="1_d9k9t"]
+[ext_resource type="Texture2D" uid="uid://cnpa28p3giqrh" path="res://scenes/hazards/firewall.png" id="2_hajin"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
-size = Vector2(120, 20)
+size = Vector2(120, 11)
 
 [node name="FireWall" type="Node2D"]
 script = ExtResource("1_d9k9t")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -60.0
-offset_top = -10.0
-offset_right = 60.0
-offset_bottom = 10.0
+offset_top = -5.0
+offset_right = 59.0
+offset_bottom = 8.0
+scale = Vector2(1.00954, 0.744961)
 color = Color(1, 0.3, 0, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_hajin")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4
-collision_mask = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_1")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
